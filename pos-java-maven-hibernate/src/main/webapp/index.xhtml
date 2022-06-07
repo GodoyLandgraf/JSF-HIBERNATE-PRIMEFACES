@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+</h:head>
+	
+	
+<h:body>
+<h:form >
+<h:panelGrid columns="2">
+
+<h:outputLabel>Id: </h:outputLabel>
+<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"></h:inputText>
+
+<h:outputLabel>Nome: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}"></h:inputText>
+
+<h:outputLabel>Sobrenome: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}"></h:inputText>
+
+<h:outputLabel>Email: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"></h:inputText>
+
+<h:outputLabel>Idade: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"></h:inputText>
+
+<h:outputLabel>Login: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"></h:inputText>
+
+<h:outputLabel>Senha: </h:outputLabel>
+<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"></h:inputSecret>
+
+</h:panelGrid>
+<h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
+<h:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
+
+</h:form>
+
+</h:body>
+	
+	
+</html>
