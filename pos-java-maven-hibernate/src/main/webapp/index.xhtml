@@ -37,6 +37,13 @@
 <h:outputLabel>Idade: </h:outputLabel>
 <h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"></h:inputText>
 
+<h:outputLabel>Sexo: </h:outputLabel>
+<h:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+<f:selectItem itemValue="MASCULINO" />
+<f:selectItem  itemValue="FEMININO" />
+</h:selectOneMenu>
+
+
 <h:outputLabel>Login: </h:outputLabel>
 <h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"></h:inputText>
 
@@ -82,13 +89,16 @@
 </h:column>
 <h:column>
 <f:facet name="header">Editar</f:facet>
-<h:commandLink value="Editar">
+<h:commandLink immediate="true" id="botaoeditar">
+<h:graphicImage url="resources/img/editar.png"/>
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
+<f:ajax execute="botaoeditar" render="@form"/>
 </h:commandLink>
 </h:column>
 <h:column>
 <f:facet name="header">Deletar</f:facet>
-<h:commandLink value="Deletar" action="#{usuarioPessoaManagedBean.remover}">
+<h:commandLink  immediate="true" action="#{usuarioPessoaManagedBean.remover}">
+<h:graphicImage url="resources/img/excluir.png"/>
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
 </h:commandLink>
 </h:column>

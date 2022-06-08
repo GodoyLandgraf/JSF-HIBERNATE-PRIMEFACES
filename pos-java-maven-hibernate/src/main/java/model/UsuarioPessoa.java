@@ -28,6 +28,7 @@ public class UsuarioPessoa {
 	private String email;
 	private String login;
 	private String senha;
+	private String sexo;
 	private int idade;
 	
 	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
@@ -86,6 +87,15 @@ public class UsuarioPessoa {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public String getSexo() {
+		return sexo;
+	}
+	
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
 	@Override
 	public String toString() {
 		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email
