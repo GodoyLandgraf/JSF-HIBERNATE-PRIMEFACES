@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"> 
 
 <h:head>
 
@@ -9,16 +10,17 @@
 	
 <h:body>
 <h:form >
+<h:messages showDetail="true" showSummary="false"></h:messages>
 <h:panelGrid columns="2">
 
 <h:outputLabel>Id: </h:outputLabel>
 <h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"></h:inputText>
 
 <h:outputLabel>Nome: </h:outputLabel>
-<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}"></h:inputText>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!"></h:inputText>
 
 <h:outputLabel>Sobrenome: </h:outputLabel>
-<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}"></h:inputText>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!" ></h:inputText>
 
 <h:outputLabel>Email: </h:outputLabel>
 <h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"></h:inputText>
@@ -33,9 +35,55 @@
 <h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"></h:inputSecret>
 
 </h:panelGrid>
+<br/>
+<br/>
 <h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
 <h:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
+<h:commandButton value="Deletar" action="#{usuarioPessoaManagedBean.remover}"/>
+<br/>
+<br/>
+<h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
+<f:facet name="header">Lista de usuários</f:facet>
+<h:column>
+<f:facet name="header">Id</f:facet>
+<h:outputText value="#{user.id}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Nome</f:facet>
 
+<h:outputText value="#{user.nome}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Sobrenome</f:facet>
+<h:outputText value="#{user.sobrenome}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Email</f:facet>
+
+<h:outputText value="#{user.email}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Login</f:facet>
+
+<h:outputText value="#{user.login}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Idade</f:facet>
+<h:outputText value="#{user.idade}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Editar</f:facet>
+<h:commandLink value="Editar">
+<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
+</h:commandLink>
+</h:column>
+<h:column>
+<f:facet name="header">Deletar</f:facet>
+<h:commandLink value="Deletar" action="#{usuarioPessoaManagedBean.remover}">
+<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
+</h:commandLink>
+</h:column>
+</h:dataTable>
 </h:form>
 
 </h:body>
