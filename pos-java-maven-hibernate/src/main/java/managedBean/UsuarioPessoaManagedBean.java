@@ -3,10 +3,13 @@ package managedBean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import org.hibernate.exception.ConstraintViolationException;
 
 import antlr.debug.NewLineEvent;
 import dao.DaoGeneric;
@@ -20,6 +23,11 @@ public class UsuarioPessoaManagedBean {
 	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<>();
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
 	
+	@PostConstruct
+	public void init() {
+		list = daoGeneric.listar(UsuarioPessoa.class);
+	}
+	
 	public UsuarioPessoa getUsuarioPessoa() {
 		return usuarioPessoa;
 	}
@@ -30,6 +38,7 @@ public class UsuarioPessoaManagedBean {
 	
 	public String salvar() {
 		daoGeneric.salvar(usuarioPessoa);
+		list.add(usuarioPessoa);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Salvo com sucesso!"));
 		return "";
 	}
@@ -40,14 +49,20 @@ public class UsuarioPessoaManagedBean {
 	}
 	
 	public List<UsuarioPessoa> getList() {
-		list = daoGeneric.listar(UsuarioPessoa.class);
 		return list;
 	}
 	
 	public String remover() {
-		daoGeneric.deletarPorId(usuarioPessoa);
-		usuarioPessoa = new UsuarioPessoa();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Removido com sucesso!"));
-		return "";	
+		try {
+			daoGeneric.deletarPorId(usuarioPessoa);
+			list.remove(usuarioPessoa);
+			usuarioPessoa = new UsuarioPessoa();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Removido com sucesso!"));
+			return "";
+		} catch (Exception e) {
+			if(e.getCause() instanceof ConstraintViolationException)
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Existem telefones para o usuário"));
+		}
+		return "";
 	}
 }

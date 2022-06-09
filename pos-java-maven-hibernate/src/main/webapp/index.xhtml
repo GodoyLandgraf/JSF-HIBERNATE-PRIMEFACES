@@ -18,8 +18,8 @@
 </p:breadCrumb>
 </h:form>
 
-<h:form >
-<h:messages showDetail="true" showSummary="false"></h:messages>
+<h:form id="formulario">
+<h:messages showDetail="true" showSummary="false" id="msg"></h:messages>
 <h:panelGrid columns="2">
 
 <h:outputLabel>Id: </h:outputLabel>
@@ -58,6 +58,8 @@
 <h:commandButton value="Deletar" action="#{usuarioPessoaManagedBean.remover}"/>
 <br/>
 <br/>
+</h:form>
+<h:form id="formtable">
 <h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
 <f:facet name="header">Lista de usuários</f:facet>
 <h:column>
@@ -92,14 +94,15 @@
 <h:commandLink immediate="true" id="botaoeditar">
 <h:graphicImage url="resources/img/editar.png"/>
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
-<f:ajax execute="botaoeditar" render="@form"/>
+<f:ajax execute="botaoeditar" render=":formulario"/>
 </h:commandLink>
 </h:column>
 <h:column>
 <f:facet name="header">Deletar</f:facet>
-<h:commandLink  immediate="true" action="#{usuarioPessoaManagedBean.remover}">
+<h:commandLink  immediate="true" action="#{usuarioPessoaManagedBean.remover}" id="botaoremover">
 <h:graphicImage url="resources/img/excluir.png"/>
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
+<f:ajax execute="botaoremover" render="@form :formulario:msg "/>
 </h:commandLink>
 </h:column>
 </h:dataTable>

@@ -60,7 +60,7 @@ public class TesteHibernate {
 	
 	/* Teste para ver se ta deletando certo no banco de dados*/
 	@Test
-	public void testeDelete() {
+	public void testeDelete() throws Exception {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		pessoa.setId(2L);

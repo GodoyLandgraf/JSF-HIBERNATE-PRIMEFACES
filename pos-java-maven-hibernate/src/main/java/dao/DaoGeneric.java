@@ -40,7 +40,7 @@ public class DaoGeneric<E> {
 	}
 	
 	/*MÉTODO PARA DELETAR POR ID NO BANCO DE DADOS */
-	public void deletarPorId(E entidade) {
+	public void deletarPorId(E entidade) throws Exception{
 		Object id = HibernateUtil.getPrimaryKey(entidade);
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
