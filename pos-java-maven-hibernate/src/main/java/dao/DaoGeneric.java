@@ -61,5 +61,10 @@ public class DaoGeneric<E> {
 		return entityManager;
 	}
 
+	public E pesquisar(Long id, Class<E> entidade) {
+		entityManager.clear();
+		E e = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
+		return e;
+}
 }
 
