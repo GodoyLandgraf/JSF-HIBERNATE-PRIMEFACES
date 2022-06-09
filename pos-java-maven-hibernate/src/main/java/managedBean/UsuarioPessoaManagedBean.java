@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import org.hibernate.exception.ConstraintViolationException;
 
 import antlr.debug.NewLineEvent;
+import dao.DAOUsuario;
 import dao.DaoGeneric;
 import model.UsuarioPessoa;
 
@@ -20,8 +21,8 @@ import model.UsuarioPessoa;
 public class UsuarioPessoaManagedBean {
 	
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
-	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<>();
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
+	private DAOUsuario<UsuarioPessoa> daoGeneric = new DAOUsuario<UsuarioPessoa>();
 	
 	@PostConstruct
 	public void init() {
@@ -54,15 +55,19 @@ public class UsuarioPessoaManagedBean {
 	
 	public String remover() {
 		try {
-			daoGeneric.deletarPorId(usuarioPessoa);
+			daoGeneric.removerUsuario(usuarioPessoa);
 			list.remove(usuarioPessoa);
 			usuarioPessoa = new UsuarioPessoa();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Removido com sucesso!"));
 			return "";
 		} catch (Exception e) {
-			if(e.getCause() instanceof ConstraintViolationException)
+			if(e.getCause() instanceof ConstraintViolationException) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Existem telefones para o usuário"));
+			}else {
+				e.printStackTrace();
+			}
 		}
+		
 		return "";
 	}
 }
