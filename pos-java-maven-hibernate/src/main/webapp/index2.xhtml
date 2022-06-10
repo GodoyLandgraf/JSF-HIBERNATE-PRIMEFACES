@@ -18,27 +18,41 @@
 </p:breadCrumb>
 </h:form>
 <h:form >
-<h:messages showDetail="true" showSummary="false"></h:messages>
-<p:panelGrid columns="2">
+<p:messages autoUpdate="true" showDetail="true" showSummary="false"></p:messages>
+<p:panelGrid columns="2"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
 
 <h:outputLabel>Id: </h:outputLabel>
 <p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"></p:inputText>
 
+
 <h:outputLabel>Nome: </h:outputLabel>
-<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!"></p:inputText>
+<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" ></p:inputText>
+
 
 <h:outputLabel>Sobrenome: </h:outputLabel>
-<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!" ></p:inputText>
+<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}"  ></p:inputText>
+
 
 <h:outputLabel>Email: </h:outputLabel>
 <p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"></p:inputText>
 
+
 <h:outputLabel>Idade: </h:outputLabel>
 <p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}"></p:inputText>
 
+<h:outputLabel>Sexo: </h:outputLabel>
+<p:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+<f:selectItem itemValue="MASCULINO" itemLabel="MASCULINO"/>
+<f:selectItem  itemValue="FEMININO" itemLabel="FEMININO"/>
+</p:selectOneMenu>
 
 <h:outputLabel>Login: </h:outputLabel>
 <p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"></p:inputText>
+
 
 <h:outputLabel>Senha: </h:outputLabel>
 <p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}"></p:password>
@@ -46,52 +60,56 @@
 </p:panelGrid>
 <br/>
 <br/>
-<p:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}" />
-<p:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
-<p:commandButton value="Deletar" action="#{usuarioPessoaManagedBean.remover}"/>
+
+
+<p:commandButton value="Salvar" ajax="false" action="#{usuarioPessoaManagedBean.salvar}" />
+<p:commandButton value="Novo" ajax="false" action="#{usuarioPessoaManagedBean.novo}"/>
+<p:commandButton value="Deletar" ajax="false" action="#{usuarioPessoaManagedBean.remover}"/>
 <br/>
 <br/>
-<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
+
+
+<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="2">
 <f:facet name="header">Lista de usuários</f:facet>
-<h:column>
+<p:column>
 <f:facet name="header">Id</f:facet>
 <h:outputText value="#{user.id}"/>
-</h:column>
-<h:column>
+</p:column>
+<p:column>
 <f:facet name="header">Nome</f:facet>
 
 <h:outputText value="#{user.nome}"/>
-</h:column>
-<h:column>
+</p:column>
+<p:column>
 <f:facet name="header">Sobrenome</f:facet>
 <h:outputText value="#{user.sobrenome}"/>
-</h:column>
-<h:column>
+</p:column>
+<p:column>
 <f:facet name="header">Email</f:facet>
 
 <h:outputText value="#{user.email}"/>
-</h:column>
-<h:column>
+</p:column>
+<p:column>
 <f:facet name="header">Login</f:facet>
 
 <h:outputText value="#{user.login}"/>
-</h:column>
-<h:column>
+</p:column>
+<p:column>
 <f:facet name="header">Idade</f:facet>
 <h:outputText value="#{user.idade}"/>
-</h:column>
-<h:column>
+</p:column>
+<p:column>
 <f:facet name="header">Editar</f:facet>
 <h:commandLink value="Editar">
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
 </h:commandLink>
-</h:column>
-<h:column>
+</p:column>
+<p:column>
 <f:facet name="header">Deletar</f:facet>
-<h:commandLink value="Deletar" action="#{usuarioPessoaManagedBean.remover}">
+<h:commandLink ajax="" value="Deletar" action="#{usuarioPessoaManagedBean.remover}">
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
 </h:commandLink>
-</h:column>
+</p:column>
 </p:dataTable>
 </h:form>
 

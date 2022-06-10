@@ -70,7 +70,7 @@ public class UsuarioPessoaManagedBean {
 			return "";
 		} catch (Exception e) {
 			if(e.getCause() instanceof ConstraintViolationException) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Existem telefones para o usuário"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Informação: ", "Existem telefones para o usuário"));
 			}else {
 				e.printStackTrace();
 			}
@@ -106,4 +106,6 @@ public class UsuarioPessoaManagedBean {
 		}
 		
 	}
-}
+
+	}
+
