@@ -38,6 +38,31 @@
 
 
 </h:form>
+<h:form id="formTelefones">
+<h:dataTable value="#{telefoneManagedBean.user.telefoneUsers}" var="fone" cellpadding="15" border="1">
+<f:facet name="header">Lista de telefones</f:facet>
+<h:column style="width:150px;">
+<f:facet name="header">Id</f:facet>
+<h:outputText value="#{fone.id}"/>
+</h:column>
+<h:column style="width:150px;">
+<f:facet name="header">Número</f:facet>
+<h:outputText value="#{fone.numero}"/>
+</h:column>
+<h:column style="width:150px;">
+<f:facet name="header">Tipo</f:facet>
+<h:outputText value="#{fone.tipo}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Deletar</f:facet>
+<h:commandLink  immediate="true" action="#{telefoneManagedBean.removeTelefone}" id="botaoremovertel">
+<h:graphicImage url="resources/img/excluir.png"/>
+<f:setPropertyActionListener value="#{fone}" target="#{telefoneManagedBean.telefone}"></f:setPropertyActionListener>
+<f:ajax execute="botaoremovertel" render="@form :formulario:msg "/>
+</h:commandLink>
+</h:column>
+</h:dataTable>
+</h:form>
 
 </h:body>
 	

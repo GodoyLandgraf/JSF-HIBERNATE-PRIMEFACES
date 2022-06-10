@@ -32,6 +32,7 @@ public class TelefoneManagedBean {
 		telefone.setUsuarioPessoa(user);
 		daoTelefone.salvar(telefone);
 		telefone = new TelefoneUser();
+		user = daoUser.pesquisar(user.getId(), UsuarioPessoa.class);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Salvo com sucesso!"));
 		return "";
 	}
@@ -59,4 +60,13 @@ public class TelefoneManagedBean {
 	public TelefoneUser getTelefone() {
 		return telefone;
 	}
+	
+	public String removeTelefone() throws Exception {
+		daoTelefone.deletarPorId(telefone);
+		user = daoUser.pesquisar(user.getId(), UsuarioPessoa.class);
+		telefone = new TelefoneUser();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Telefone Removido!"));
+		return "";
+	}
+	
 }
