@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"> 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"> 
 
 <h:head>
 
@@ -26,10 +27,10 @@
 <h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"></h:inputText>
 
 <h:outputLabel>Nome: </h:outputLabel>
-<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!"></h:inputText>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!" pt:placeholder="Informe o nome"></h:inputText>
 
 <h:outputLabel>Sobrenome: </h:outputLabel>
-<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!" ></h:inputText>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!" pt:placeholder="Informe o sobrenome" ></h:inputText>
 
 <h:outputLabel>Email: </h:outputLabel>
 <h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}"></h:inputText>
