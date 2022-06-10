@@ -43,6 +43,32 @@
 <f:selectItem  itemValue="FEMININO" />
 </h:selectOneMenu>
 
+<h:outputLabel>Cep: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}">
+<f:ajax event="blur" execute="@this" listener="#{usuarioPessoaManagedBean.pesquisaCep}" render="logradouro complemento bairro localidade uf ibge gia"/>
+</h:inputText>
+
+<h:outputLabel>Logradouro: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.logradouro}" id="logradouro"></h:inputText>
+
+<h:outputLabel>Complemento: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.complemento}" id="complemento"></h:inputText>
+
+<h:outputLabel>Bairro: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.bairro}" id="bairro"></h:inputText>
+
+<h:outputLabel>Localidade: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.localidade}" id="localidade"></h:inputText>
+
+<h:outputLabel>Uf: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.uf}" id="uf"></h:inputText>
+
+
+<h:outputLabel>Ibge: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.ibge}" id="ibge"></h:inputText>
+
+<h:outputLabel>Gia: </h:outputLabel>
+<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.gia}" id="gia"></h:inputText>
 
 <h:outputLabel>Login: </h:outputLabel>
 <h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"></h:inputText>
@@ -58,6 +84,8 @@
 <h:commandButton value="Deletar" action="#{usuarioPessoaManagedBean.remover}"/>
 <br/>
 <br/>
+
+
 </h:form>
 <h:form id="formtable">
 <h:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="15" border="1">
@@ -77,12 +105,10 @@
 </h:column>
 <h:column>
 <f:facet name="header">Email</f:facet>
-
 <h:outputText value="#{user.email}"/>
 </h:column>
 <h:column>
 <f:facet name="header">Login</f:facet>
-
 <h:outputText value="#{user.login}"/>
 </h:column>
 <h:column>
