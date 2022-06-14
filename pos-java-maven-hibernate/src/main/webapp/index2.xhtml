@@ -100,14 +100,23 @@
 </p:column>
 <p:column>
 <f:facet name="header">Editar</f:facet>
-<h:commandLink value="Editar">
+<h:commandLink >
+<h:graphicImage url="resources/img/editar.png"/>
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
 </h:commandLink>
 </p:column>
 <p:column>
 <f:facet name="header">Deletar</f:facet>
-<h:commandLink ajax="" value="Deletar" action="#{usuarioPessoaManagedBean.remover}">
+<h:commandLink ajax="" action="#{usuarioPessoaManagedBean.remover}">
+<h:graphicImage url="resources/img/excluir.png"/>
 <f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"></f:setPropertyActionListener>
+</h:commandLink>
+</p:column>
+<p:column>
+<f:facet name="header">Telefones</f:facet>
+<h:commandLink  immediate="true" action="telefoneprimeface.jsf" id="botaofone">
+<h:graphicImage url="resources/img/fone.png"/>
+<f:param name="codigouser" value="#{user.id}"/>
 </h:commandLink>
 </p:column>
 </p:dataTable>
