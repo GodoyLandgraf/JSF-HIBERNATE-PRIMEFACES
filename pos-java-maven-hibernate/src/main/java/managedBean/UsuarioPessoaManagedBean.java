@@ -17,6 +17,9 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.hibernate.exception.ConstraintViolationException;
 
+
+
+
 import com.google.gson.Gson;
 
 import antlr.debug.NewLineEvent;
@@ -35,7 +38,9 @@ public class UsuarioPessoaManagedBean {
 	@PostConstruct
 	public void init() {
 		list = daoGeneric.listar(UsuarioPessoa.class);
-	}
+		}
+	
+
 	
 	public UsuarioPessoa getUsuarioPessoa() {
 		return usuarioPessoa;

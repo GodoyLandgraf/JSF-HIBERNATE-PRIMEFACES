@@ -30,10 +30,10 @@
 <h:outputText value="#{telefoneManagedBean.user.nome}"/>
 
 <h:outputLabel>Número: </h:outputLabel>
-<p:inputText value="#{telefoneManagedBean.telefone.numero}"></p:inputText>
+<p:inputText value="#{telefoneManagedBean.telefone.numero}"  required="true" requiredMessage="Número Obrigatório"></p:inputText>
 
 <h:outputLabel>Tipo: </h:outputLabel>
-<p:inputText value="#{telefoneManagedBean.telefone.tipo}"></p:inputText>
+<p:inputText value="#{telefoneManagedBean.telefone.tipo}" required="true" requiredMessage="Tipo Obrigatório"></p:inputText>
 
 </p:panelGrid>
 <br/>
@@ -51,7 +51,7 @@
 </p:column>
 <p:column style="width:150px;">
 <f:facet name="header">Número</f:facet>
-<h:outputText value="#{fone.numero}"/>
+<h:outputText value="#{fone.numero}" />
 </p:column>
 <p:column style="width:150px;">
 <f:facet name="header">Tipo</f:facet>
